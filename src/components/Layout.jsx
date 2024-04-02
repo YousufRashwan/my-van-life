@@ -5,13 +5,15 @@ import Footer from "./Footer";
 
 const Layout = () => {
   return (
-    <>
-      <Header />
-      <main>
-        <Outlet />
-      </main>
+    <div className="min-h-screen flex flex-col justify-between">
+      <div>
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+      </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

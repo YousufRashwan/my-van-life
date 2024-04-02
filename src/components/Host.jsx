@@ -1,39 +1,34 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { NavLink, Outlet } from "react-router-dom";
 
-const Header = () => {
+const Host = () => {
   const activeStyles = "font-bold text-gray-800 underline";
-
   return (
-    <header className="flex justify-between items-center m-2 my-6 p-2">
-      <Link to="/">
-        <h1 className="text-2xl font-black">#VANLIFE</h1>
-      </Link>
+    <div className="">
       <nav>
         <NavLink
-          to="/host"
+          to="."
+          end
           className={({ isActive }) =>
             `mx-3 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
               isActive && `${activeStyles} font-bold text-gray-800`
             }`
           }
         >
-          Host
+          Dashboard
         </NavLink>
         <NavLink
-          to="/about"
+          to="income"
           className={({ isActive }) =>
             `mx-3 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
               isActive && `${activeStyles} font-bold text-gray-800`
             }`
           }
         >
-          About
+          Income
         </NavLink>
         <NavLink
-          to="/vans"
+          to="vans"
           className={({ isActive }) =>
             `mx-3 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
               isActive && `${activeStyles} font-bold text-gray-800`
@@ -42,13 +37,20 @@ const Header = () => {
         >
           Vans
         </NavLink>
-        <Link to="/register" className="mx-3 font-bold text-black">
-          <FontAwesomeIcon icon={faRightToBracket} />
-        </Link>
-        <button onClick={() => localStorage.removeItem("loggedin")}>X</button>
+        <NavLink
+          to="reviews"
+          className={({ isActive }) =>
+            `mx-3 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
+              isActive && `${activeStyles} font-bold text-gray-800`
+            }`
+          }
+        >
+          Reviews
+        </NavLink>
       </nav>
-    </header>
+      <Outlet />
+    </div>
   );
 };
 
-export default Header;
+export default Host;
