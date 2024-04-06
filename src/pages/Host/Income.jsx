@@ -1,5 +1,6 @@
 import React from "react";
 import IncomeChart from "../../assets/income.png";
+
 export default function Income() {
   return (
     <div className="m-6">
@@ -13,7 +14,7 @@ export default function Income() {
         </div>
         <div
           style={{ backgroundImage: `url(${IncomeChart})` }}
-          className=" bg-cover bg-center w-[532px] h-[366px]"
+          className="bg-cover bg-center w-[452px] h-[310px]"
         ></div>
       </div>
       <div>

@@ -10,18 +10,28 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle, faFacebook } from "@fortawesome/free-brands-svg-icons";
-import { loginUser, requireAuth } from "../../api";
+import { loginUser } from "../../api";
 
 export const loader = ({ request }) => {
-  const isLoggedin = localStorage.getItem("loggedin");
-  // find a way to fix it so we can sign up even if are logged in
-  // and log in new account even if we are logged in with current acc
-  if (isLoggedin) {
+  let isLoggedin = sessionStorage.getItem("Auth Token");
+  const isLoggedout = new URL(request.url).searchParams.get("logout");
+  let loggedOutMessage;
+  if (isLoggedout === "true" && !isLoggedin) {
+    loggedOutMessage = "You are already logged out";
+  } else if (
+    isLoggedout === "true" &&
+    window.confirm("Are you sure you want to log out?") &&
+    isLoggedin
+  ) {
+    sessionStorage.removeItem("Auth Token");
+    isLoggedin === false;
+  }
+  if (isLoggedin && !isLoggedout) {
     return redirect("/host");
   }
   return {
     message: new URL(request.url).searchParams.get("message"),
-    redirectTo: new URL(request.url).searchParams.get("redirectTo") || "/host",
+    loggedOutMessage,
   };
 };
 
@@ -33,34 +43,60 @@ export const action = async ({ request }) => {
   const password = formData.get("password");
   try {
     const data = await loginUser({ email, password });
-    localStorage.setItem("loggedin", "true");
     return redirect(redirectTo);
-  } catch (err) {
-    return err.message;
+  } catch (error) {
+    if (error.code === "auth/wrong-password") {
+      return "Please check the Password";
+    }
+    if (error.code === "auth/user-not-found") {
+      return "Please check the Email";
+    }
+    return "Wrong Credentials";
   }
 };
 
 const Login = () => {
-  const { message, redirectTo } = useLoaderData();
+  const { message, loggedOutMessage } = useLoaderData();
   const errorMessage = useActionData();
   const state = useNavigation().state;
-  console.log(redirectTo);
 
   return (
-    <div className="bg-white w-full sm:w-1/2 md:w-2/5 flex flex-col justify-between items-center">
-      <div className="w-full bg-orange-50 py-4 rounded-bl-[30%] shadow-[rgba(0,0,15,0.3)_3px_1px_4px_0px] flex flex-col justify-center items-center">
-        <div className="w-2/3 flex flex-col py-10 justify-center items-center">
+    <div
+      className="bg-white w-full sm:w-1/2 md:w-2/5 flex flex-col
+    justify-between items-center"
+    >
+      <div
+        className="w-full bg-orange-50 py-4 rounded-bl-[30%]
+      shadow-[rgba(0,0,15,0.3)_3px_1px_4px_0px] flex flex-col
+      justify-center items-center"
+      >
+        <div
+          className="w-2/3 flex flex-col py-10 justify-center
+        items-center"
+        >
           <h1 className="text-2xl font-black text-center mb-8">#VANLIFE</h1>
-
-          {/* Here the form starts */}
           <Form method="post" replace className="w-full">
+            {loggedOutMessage && !message && !errorMessage && (
+              <p
+                className="text-red-600 mb-4 text-sm font-bold
+              text-center"
+              >
+                {loggedOutMessage}!
+              </p>
+            )}
             {message && (
-              <p className="text-red-600 mb-4 text-sm font-bold text-center">
+              <p
+                className="text-red-600 mb-4 text-sm font-bold
+              text-center"
+              >
                 {message}!
               </p>
             )}
             {errorMessage && (
-              <p className="text-red-600 mb-4 text-sm font-bold text-center">
+              <p
+                className="text-red-600 mb-4 text-sm font-bold
+              text-center"
+              >
                 {errorMessage}!
               </p>
             )}
@@ -69,8 +105,8 @@ const Login = () => {
                 <FontAwesomeIcon icon={faEnvelope} className="absolute" />
                 <input
                   placeholder="Email"
-                  className="px-4 w-full bg-inherit border-b border-b-black
-                      outline-0 focus:border-b-2"
+                  className="px-4 w-full bg-inherit border-b
+                  border-b-black outline-0 focus:border-b-2"
                   type="email"
                   name="email"
                 />
@@ -100,16 +136,15 @@ const Login = () => {
               </div>
             </div>
           </Form>
-          {/* Here it ends */}
-          {/* <p className="text-xs text-center">
+          <p className="text-xs text-center">
             Don't have an account?{" "}
             <Link
-              to={`/register/signup?redirectTo=${redirectTo}`}
+              to={`/register/signup`}
               className="text-orange-400 font-semibold"
             >
               Sign Up
             </Link>
-          </p> */}
+          </p>
         </div>
       </div>
       <div className="text-xs flex justify-between gap-6 mb-4 ">

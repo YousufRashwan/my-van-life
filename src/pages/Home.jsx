@@ -7,13 +7,10 @@ const Home = () => {
     <div>
       <div
         style={{
-          //       background: `linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)),
-          // url(${road}) no-repeat center center`,
           backgroundImage: `url(${vanNight})`,
         }}
         className={`min-h-80 py-11 px-6 text-white bg-cover bg-center`}
       >
-        {/* <img src={road} alt="road" /> */}
         <h1 className="text-4xl font-extrabold mb-8">
           You got the travel plans, we got the travel vans.
         </h1>

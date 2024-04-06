@@ -1,13 +1,7 @@
 import React from "react";
-import { Link, useLoaderData, Await, defer } from "react-router-dom";
-import { getVans, requireAuth } from "../../api";
+import { Link, useLoaderData, Await } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-
-export async function loader({ request }) {
-  await requireAuth(request);
-  return defer({ vans: getVans() });
-}
 
 const Dashboard = () => {
   const vansPromise = useLoaderData();
@@ -15,7 +9,10 @@ const Dashboard = () => {
   function renderHostVanELems(vans) {
     const hostVans = vans.slice(3);
     const hostVanElements = hostVans.map((van) => (
-      <div className="drop-shadow-lg bg-white mb-4 p-4 flex justify-between items-center rounded-md">
+      <div
+        className="drop-shadow-lg bg-white mb-4 p-4 flex
+      justify-between items-center rounded-md"
+      >
         <div className="flex items-center">
           <img
             src={van.imageUrl}
@@ -37,7 +34,10 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className="bg-orange-100 p-6 py-8 mt-8 flex justify-between items-center">
+      <div
+        className="bg-orange-100 p-6 py-8 mt-8 flex
+      justify-between items-center"
+      >
         <div>
           <h1 className="text-4xl font-semibold mb-3">Welcome!</h1>
           <p className="text-gray-600 mb-3">
@@ -49,7 +49,10 @@ const Dashboard = () => {
           Details
         </Link>
       </div>
-      <div className="bg-orange-200 p-6 py-10 flex justify-between items-center">
+      <div
+        className="bg-orange-200 p-6 py-10 flex
+      justify-between items-center"
+      >
         <div className="flex items-center">
           <h2 className="text-3xl font-semibold mr-4">Review score</h2>
           <p className="text-xl text-gray-600 ">

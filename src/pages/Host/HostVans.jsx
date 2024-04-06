@@ -1,5 +1,11 @@
 import React from "react";
-import { useLoaderData, Link, Await } from "react-router-dom";
+import { useLoaderData, Link, Await, defer } from "react-router-dom";
+import { requireAuth, getVans } from "../../api";
+
+export const loader = async ({ request }) => {
+  await requireAuth(request);
+  return defer({ vans: getVans() });
+};
 
 const HostVans = () => {
   const vansPromise = useLoaderData();

@@ -1,21 +1,19 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const activeStyles = "font-bold text-gray-800 underline";
 
   return (
-    <header className="flex justify-between items-center m-2 my-6 p-2">
+    <header className="flex justify-between items-center my-6 mt-4 p-2 px-4">
       <Link to="/">
         <h1 className="text-2xl font-black">#VANLIFE</h1>
       </Link>
-      <nav>
+      <nav className="flex gap-6 items-center">
         <NavLink
           to="/host"
           className={({ isActive }) =>
-            `mx-3 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
+            ` hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
               isActive && `${activeStyles} font-bold text-gray-800`
             }`
           }
@@ -25,7 +23,7 @@ const Header = () => {
         <NavLink
           to="/about"
           className={({ isActive }) =>
-            `mx-3 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
+            ` hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
               isActive && `${activeStyles} font-bold text-gray-800`
             }`
           }
@@ -35,17 +33,21 @@ const Header = () => {
         <NavLink
           to="/vans"
           className={({ isActive }) =>
-            `mx-3 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
+            ` hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
               isActive && `${activeStyles} font-bold text-gray-800`
             }`
           }
         >
           Vans
         </NavLink>
-        <Link to="/register" className="mx-3 font-bold text-black">
-          <FontAwesomeIcon icon={faRightToBracket} />
-        </Link>
-        <button onClick={() => localStorage.removeItem("loggedin")}>X</button>
+        <div className="text-orange-400  flex items-center justify-center gap-2 text-xs font-bold">
+          <Link to="/register" className="hover:text-orange-500">
+            Login
+          </Link>
+          <Link className="hover:text-orange-500" to="/register?logout=true">
+            Logout
+          </Link>
+        </div>
       </nav>
     </header>
   );

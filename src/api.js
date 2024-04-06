@@ -7,9 +7,13 @@ import {
   getDoc,
 } from "firebase/firestore/lite";
 
-import { redirect } from "react-router-dom";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 
-let users = [{ email: "b@b", password: "p123" }];
+import { redirect } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAI3wLD20VL_EMkGRMMDu8y0qpcTYU_gWs",
@@ -44,64 +48,43 @@ export async function getVan(id) {
   return van;
 }
 
-// use as setTimeout function
+// Add a getHostVans for vans with tokens, and getHostVan
+// to search for the van in only van with tokens
+
+//setTimeout function
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export async function loginUser(user) {
-  // await sleep(1000);
+  const auth = getAuth();
 
-  let foundUser;
+  const response = await signInWithEmailAndPassword(
+    auth,
+    user.email,
+    user.password
+  );
+  sessionStorage.setItem("Auth Token", response._tokenResponse.refreshToken);
 
-  users.map((userData) => {
-    foundUser =
-      userData.email === user.email &&
-      userData.password === user.password &&
-      user;
-  });
-
-  if (!foundUser) {
-    throw {
-      message: "No user with those credentials found!",
-      statusText: {},
-      status: 401,
-    };
-  }
-
-  foundUser.password = undefined;
-  return {
-    user: foundUser,
-    token: "Enjoy your pizza, here's your tokens.",
-  };
+  return null;
 }
 
-// export async function signupUser(user) {
-//   await sleep(1000);
-//   let foundUser;
+export async function signupUser(user) {
+  const auth = getAuth();
 
-//   users.map((userData) => {
-//     foundUser = userData.email === user.email && user.email;
-//   });
+  const response = await createUserWithEmailAndPassword(
+    auth,
+    user.email,
+    user.password
+  );
+  sessionStorage.setItem("Auth Token", response._tokenResponse.refreshToken);
 
-//   if (foundUser) {
-//     throw {
-//       message: "This user already exists",
-//       statusText: {},
-//       status: 401,
-//     };
-//   }
-
-//   users.push(user);
-//   return {
-//     user: { email: user.email, password: "undefined" },
-//     token: "Enjoy your pizza, here's your tokens.",
-//   };
-// }
+  return null;
+}
 
 export async function requireAuth(request) {
   const pathname = new URL(request.url).pathname;
-  const loggedIn = JSON.parse(localStorage.getItem("loggedin"));
+  const loggedIn = sessionStorage.getItem("Auth Token");
 
   if (!loggedIn) {
     throw redirect(

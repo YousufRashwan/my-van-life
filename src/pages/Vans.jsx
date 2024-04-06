@@ -6,7 +6,6 @@ import {
   Await,
   defer,
 } from "react-router-dom";
-import modestExplorer from "../assets/modest-explorer.png";
 import { getVans } from "../api";
 
 export function loader() {
