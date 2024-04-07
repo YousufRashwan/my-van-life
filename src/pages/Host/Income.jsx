@@ -14,7 +14,7 @@ export default function Income() {
         </div>
         <div
           style={{ backgroundImage: `url(${IncomeChart})` }}
-          className="bg-cover bg-center w-[452px] h-[310px]"
+          className="bg-cover bg-center w-[284px] h-[200px] sm:w-[452px] sm:h-[310px]"
         ></div>
       </div>
       <div>

@@ -5,7 +5,7 @@ const Header = () => {
   const activeStyles = "font-bold text-gray-800 underline";
 
   return (
-    <header className="flex justify-between items-center my-6 mt-4 p-2 px-4">
+    <header className="flex flex-col sm:flex-row justify-between items-center h-20 p-2 px-8">
       <Link to="/">
         <h1 className="text-2xl font-black">#VANLIFE</h1>
       </Link>

@@ -66,7 +66,7 @@ const Login = () => {
     justify-between items-center"
     >
       <div
-        className="w-full bg-orange-50 py-4 rounded-bl-[30%]
+        className="w-full bg-orange-50 py-0 sm:py-4 rounded-bl-[30%]
       shadow-[rgba(0,0,15,0.3)_3px_1px_4px_0px] flex flex-col
       justify-center items-center"
       >
@@ -123,16 +123,16 @@ const Login = () => {
               </div>
             </div>
             <div>
-              <div className="flex justify-between items-center mb-4">
-                <a className="hover:cursor-pointer text-xs text-orange-400">
-                  Forget Password?
-                </a>
+              <div className="flex flex-col sm:flex-row-reverse justify-between items-center gap-2 mb-4">
                 <button
                   disabled={state === "submitting"}
                   className="text-xs text-orange-50 bg-orange-400 rounded-xl px-4 py-1 hover:bg-orange-500 transition"
                 >
                   {state === "submitting" ? "LOGINING IN..." : "LOGIN"}
                 </button>
+                <a className="hover:cursor-pointer text-xs text-orange-400">
+                  Forget Password?
+                </a>
               </div>
             </div>
           </Form>
@@ -147,16 +147,16 @@ const Login = () => {
           </p>
         </div>
       </div>
-      <div className="text-xs flex justify-between gap-6 mb-4 ">
+      <div className="text-xs flex flex-col text-center sm:flex-row justify-between gap-4 mb-4">
         <p className="text-orange-400">
           Or <span className="font-semibold">Login With</span>
         </p>
         <div className="flex gap-4">
-          <a href="https://www.google.com/" target="_blank">
+          <a href="" /*target="_blank"*/>
             <FontAwesomeIcon icon={faGoogle} className="mr-1" />
             <span className="text-orange-400">Google</span>
           </a>
-          <a href="https://www.facebook.com/" target="_blank">
+          <a href="" /*target="_blank"*/>
             <FontAwesomeIcon icon={faFacebook} className="mr-1" />
             <span className="text-orange-400">Facebook</span>
           </a>

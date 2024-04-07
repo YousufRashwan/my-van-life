@@ -13,3 +13,7 @@ body {
   background-color: #fff7ed;
   font-family: "Inter", sans-serif;
 }
+
+.homeCover {
+  height: calc(100vh - 144px);
+}

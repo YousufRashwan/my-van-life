@@ -94,16 +94,16 @@ const Singup = () => {
           </div>
         </div>
       </div>
-      <div className="text-xs flex justify-between gap-6 mb-4 ">
+      <div className="text-xs flex flex-col text-center sm:flex-row justify-between gap-4 mb-4">
         <p className="text-orange-400">
           Or <span className="font-semibold">Sign Up With</span>
         </p>
         <div className="flex gap-4">
-          <a href="https://www.google.com/" target="_blank">
+          <a href="" /*target="_blank"*/>
             <FontAwesomeIcon icon={faGoogle} className="mr-1" />
             <span className="text-orange-400">Google</span>
           </a>
-          <a href="https://www.facebook.com/" target="_blank">
+          <a href="" /*target="_blank"*/>
             <FontAwesomeIcon icon={faFacebook} className="mr-1" />
             <span className="text-orange-400">Facebook</span>
           </a>

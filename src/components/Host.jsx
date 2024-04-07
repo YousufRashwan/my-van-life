@@ -10,7 +10,7 @@ const Host = () => {
           to="."
           end
           className={({ isActive }) =>
-            `mx-3 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
+            `mx-2 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
               isActive && `${activeStyles} font-bold text-gray-800`
             }`
           }
@@ -20,7 +20,7 @@ const Host = () => {
         <NavLink
           to="income"
           className={({ isActive }) =>
-            `mx-3 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
+            `mx-2 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
               isActive && `${activeStyles} font-bold text-gray-800`
             }`
           }
@@ -30,7 +30,7 @@ const Host = () => {
         <NavLink
           to="vans"
           className={({ isActive }) =>
-            `mx-3 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
+            `mx-2 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
               isActive && `${activeStyles} font-bold text-gray-800`
             }`
           }
@@ -40,7 +40,7 @@ const Host = () => {
         <NavLink
           to="reviews"
           className={({ isActive }) =>
-            `mx-3 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
+            `mx-2 hover:text-gray-800 hover:underline font-semibold text-gray-600 ${
               isActive && `${activeStyles} font-bold text-gray-800`
             }`
           }

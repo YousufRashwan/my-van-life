@@ -15,7 +15,7 @@ const Reviews = () => {
         </div>
         <div
           style={{ backgroundImage: `url(${ReviewsPic})` }}
-          className="bg-cover bg-center w-[458px] h-[198px]"
+          className="bg-cover bg-center w-[274px] h-[120px] sm:w-[458px] sm:h-[198px]"
         ></div>
       </div>
       <div>

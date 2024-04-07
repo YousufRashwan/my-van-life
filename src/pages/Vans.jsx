@@ -26,7 +26,7 @@ const Vans = () => {
       <Link
         to={van.id}
         state={{ search: `?${searchParams.toString()}`, type: typeFilter }}
-        className="drop-shadow-lg hover:translate-x-0.5 hover:translate-y-0.5 transition"
+        className="flex flex-col justify-between drop-shadow-lg hover:translate-x-0.5 hover:translate-y-0.5 transition"
       >
         <img
           src={van.imageUrl}
@@ -79,11 +79,11 @@ const Vans = () => {
         <h1 className="text-3xl text-black font-bold mb-4">
           Explore our van options
         </h1>
-        <div>
+        <div className="flex flex-wrap sm:flex gap-2">
           <button
             onClick={() => handleFilter("type", "simple")}
             className="inline-block bg-orange-200  py-1 px-4
-          mr-2 rounded-md hover:bg-orange-600
+           rounded-md hover:bg-orange-600
           hover:text-orange-100 transition"
           >
             Simple
@@ -91,7 +91,7 @@ const Vans = () => {
           <button
             onClick={() => handleFilter("type", "luxury")}
             className="inline-block bg-orange-200 py-1 px-4
-          mr-2 rounded-md hover:bg-black
+           rounded-md hover:bg-black
           hover:text-orange-100 transition"
           >
             Luxury
@@ -99,7 +99,7 @@ const Vans = () => {
           <button
             onClick={() => handleFilter("type", "rugged")}
             className="inline-block bg-orange-200 py-1 px-4
-          mr-2  rounded-md hover:bg-green-800
+           rounded-md hover:bg-green-800
           hover:text-orange-100 transition"
           >
             Rugged
@@ -107,7 +107,7 @@ const Vans = () => {
           {typeFilter && (
             <button
               onClick={() => handleFilter("type", null)}
-              className="underline text-gray-600"
+              className="inline-block underline text-gray-600"
             >
               Clear filters
             </button>
