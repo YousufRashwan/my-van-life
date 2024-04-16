@@ -4,14 +4,14 @@ import vanNight from "../assets/van-night.jpg";
 
 const Home = () => {
   return (
-    <div className="flex flex-col">
-      <div className="hero relative flex-grow overflow-hidden homeCover z-0">
+    <div>
+      <div className="relative flex items-center justify-center homeCover z-0 py-24 px-8">
         <img
           src={vanNight}
           alt="Van life background image"
-          className="absolute inset-0 w-full h-full object-cover filter:saturate(50%) -z-10"
+          className="absolute w-full h-full object-cover filter:saturate(50%) -z-10"
         />
-        <div className="container mt-20 mx-auto px-4 py-20 flex flex-col justify-center items-center text-center">
+        <div className="container flex flex-col justify-center items-center text-center">
           <h1 className="text-4xl font-bold text-white mb-8">
             Explore anywhere with our rental vans.
           </h1>
